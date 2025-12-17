@@ -201,38 +201,10 @@ const navToggle = document.querySelector('#navToggle');
 const primaryNav = document.querySelector('#primaryNav');
 
 navToggle.addEventListener('click', () => {
-    const isOpened = navToggle.getAttribute('aria-expanded') === 'true';
-
-    if (isOpened) {
-        // Close the menu
-        navToggle.setAttribute('aria-expanded', 'false');
-        primaryNav.classList.remove('is-active');
-    } else {
-        // Open the menu
-        navToggle.setAttribute('aria-expanded', 'true');
-        primaryNav.classList.add('is-active');
-    }
-});
-
-const navToggle = document.querySelector('#navToggle');
-const primaryNav = document.querySelector('#primaryNav');
-const navLinks = document.querySelectorAll('.primary-nav a');
-
-// Toggle menu function
-function toggleMenu() {
-    const isOpened = navToggle.getAttribute('aria-expanded') === 'true';
-    navToggle.setAttribute('aria-expanded', !isOpened);
+    // Check if currently open
+    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+    
+    // Flip the state
+    navToggle.setAttribute('aria-expanded', !isExpanded);
     primaryNav.classList.toggle('is-active');
-}
-
-navToggle.addEventListener('click', toggleMenu);
-
-// Close menu when a link is clicked
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        if (primaryNav.classList.contains('is-active')) {
-            toggleMenu();
-        }
-    });
 });
-
