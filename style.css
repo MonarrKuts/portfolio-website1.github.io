@@ -484,5 +484,32 @@ body{
     flex-direction: column; /* Optional: stacks individual links vertically */
     gap: 0.8rem;
   }
+  .primary-nav {
+    display: none; /* Hide it by default on mobile */
+    position: absolute;
+    top: 100%; /* Positions it right below the header */
+    left: 0;
+    width: 100%;
+    background: #333; /* Use your brand color */
+    padding: 2rem;
+    z-index: 1000;
+  }
+
+  /* This class will be added by JavaScript */
+  .primary-nav.is-active {
+    display: block;
+  }
+
+  .primary-nav ul {
+    flex-direction: column; /* Stack links vertically */
+    align-items: center;
+    gap: 2rem;
+  }
+
+  /* Make sure the hamburger is visible */
+  .nav-toggle {
+    display: block;
+  }
 }
+
 
