@@ -108,7 +108,10 @@ body{
   display:none;
   background:none;
   border:0;
-  padding:0.25rem;
+  padding: 0.5rem; /* Larger tap target for mobile */
+  cursor: pointer;
+  z-index: 100;    /* Keep button above the menu */
+  position: relative;
 }
 .hamburger{
   display:block;
@@ -116,6 +119,7 @@ body{
   height:2px;
   background:var(--text);
   position:relative;
+  transition: background 0.2s;
 }
 
 
@@ -456,21 +460,18 @@ body{
 .hamburger::before { transform: translateY(-8px); }
 .hamburger::after { transform: translateY(8px); }
 
-/* The "X" Animation when aria-expanded is true */
-/*  translateY(0) to move them to the center, then rotate */
-
+/* THE "X" ANIMATION */
 button[aria-expanded="true"] .hamburger {
-  background: transparent !important; /* Hide middle line */
+  background: transparent !important;
 }
 
 button[aria-expanded="true"] .hamburger::before {
-  transform: translateY(0) rotate(45deg);
+  transform: translateY(0) rotate(45deg) !important;
 }
 
 button[aria-expanded="true"] .hamburger::after {
-  transform: translateY(0) rotate(-45deg);
+  transform: translateY(0) rotate(-45deg) !important;
 }
-
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce){
   .reveal,
@@ -533,6 +534,7 @@ button[aria-expanded="true"] .hamburger::after {
     display: block;
   }
 }
+
 
 
 
