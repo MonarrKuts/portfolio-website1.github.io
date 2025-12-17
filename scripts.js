@@ -213,3 +213,26 @@ navToggle.addEventListener('click', () => {
         primaryNav.classList.add('is-active');
     }
 });
+
+const navToggle = document.querySelector('#navToggle');
+const primaryNav = document.querySelector('#primaryNav');
+const navLinks = document.querySelectorAll('.primary-nav a');
+
+// Toggle menu function
+function toggleMenu() {
+    const isOpened = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', !isOpened);
+    primaryNav.classList.toggle('is-active');
+}
+
+navToggle.addEventListener('click', toggleMenu);
+
+// Close menu when a link is clicked
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (primaryNav.classList.contains('is-active')) {
+            toggleMenu();
+        }
+    });
+});
+
