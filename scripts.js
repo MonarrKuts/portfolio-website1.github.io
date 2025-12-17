@@ -194,4 +194,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Observe all reveal elements
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
 })();
+
+const navToggle = document.querySelector('#navToggle');
+const primaryNav = document.querySelector('#primaryNav');
+
+navToggle.addEventListener('click', () => {
+    const isOpened = navToggle.getAttribute('aria-expanded') === 'true';
+
+    if (isOpened) {
+        // Close the menu
+        navToggle.setAttribute('aria-expanded', 'false');
+        primaryNav.classList.remove('is-active');
+    } else {
+        // Open the menu
+        navToggle.setAttribute('aria-expanded', 'true');
+        primaryNav.classList.add('is-active');
+    }
+});
