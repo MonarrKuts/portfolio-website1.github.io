@@ -474,4 +474,15 @@ body{
   .hero-body{ padding: 3rem 0 4rem; }
   .brand-text{ display:none; }
   .hero-title{ font-size: clamp(1.6rem, 8vw, 2.2rem); }
+  .footer-inner {
+    flex-direction: column; /* Stacks the copyright and nav vertically */
+    text-align: center;
+    gap: 1.5rem;            /* Adds space between the two rows */
+  }
+
+  .footer-nav {
+    flex-direction: column; /* Optional: stacks individual links vertically */
+    gap: 0.8rem;
+  }
 }
+
