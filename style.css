@@ -130,6 +130,26 @@ body{
 .hamburger::before{ transform: translateY(-8px); }
 .hamburger::after{ transform: translateY(8px); }
 
+/* When the menu is open, transform the hamburger into an X */
+[aria-expanded="true"] .hamburger {
+  background: transparent; /* Hide the middle line */
+}
+
+[aria-expanded="true"] .hamburger::before {
+  transform: rotate(45deg) translateY(0);
+  top: 0;
+}
+
+[aria-expanded="true"] .hamburger::after {
+  transform: rotate(-45deg) translateY(0);
+  top: 0;
+}
+
+/* Ensure the transitions are smooth */
+.hamburger, .hamburger::before, .hamburger::after {
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
 /* Hero */
 .hero{
   position:relative;
@@ -486,13 +506,13 @@ body{
   }
   .primary-nav {
     display: none; /* Hide it by default on mobile */
-    position: absolute;
+    position: fixed; /* Changed from absolute to fixed to cover the screen */
     top: 100%; /* Positions it right below the header */
     left: 0;
     width: 100%;
-    background: #333; /* Use your brand color */
-    padding: 2rem;
-    z-index: 1000;
+    background: #1a1a1a; /* Dark background for contrast */
+    padding: 10vh 2rem;
+    z-index: 999;
   }
 
   /* This class will be added by JavaScript */
@@ -511,5 +531,6 @@ body{
     display: block;
   }
 }
+
 
 
