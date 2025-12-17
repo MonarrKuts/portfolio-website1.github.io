@@ -4,17 +4,32 @@ document.addEventListener('DOMContentLoaded', function () {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Mobile nav
-  const navToggle = document.getElementById('navToggle');
-  const primaryNav = document.getElementById('primaryNav');
-  navToggle && navToggle.addEventListener('click', function () {
-    const expanded = this.getAttribute('aria-expanded') === 'true';
-    this.setAttribute('aria-expanded', String(!expanded));
-    if (primaryNav) {
-      primaryNav.style.display = expanded ? '' : 'block';
-      // simple inline show/hide for small screens
-    }
+  // Mobile nav - CLEAN VERSION
+const navToggle = document.getElementById('navToggle');
+const primaryNav = document.getElementById('primaryNav');
+
+if (navToggle && primaryNav) {
+  navToggle.addEventListener('click', function () {
+    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+    
+    // 1. Toggle the attribute (This triggers the CSS "X" animation)
+    this.setAttribute('aria-expanded', String(!isExpanded));
+    
+    // 2. Toggle the class (This triggers the menu visibility)
+    primaryNav.classList.toggle('is-active');
+    
+    // 3. Remove any inline styles that might be stuck
+    primaryNav.style.display = ''; 
   });
+
+  // Close menu when a link is clicked
+  primaryNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.setAttribute('aria-expanded', 'false');
+      primaryNav.classList.remove('is-active');
+    });
+  });
+}
 
   // Reveal-on-nav helper (used below)
   function revealElementsInSection(section) {
@@ -197,14 +212,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 })();
 
-const navToggle = document.querySelector('#navToggle');
-const primaryNav = document.querySelector('#primaryNav');
+  
 
-navToggle.addEventListener('click', () => {
-    // Check if currently open
-    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-    
-    // Flip the state
-    navToggle.setAttribute('aria-expanded', !isExpanded);
-    primaryNav.classList.toggle('is-active');
-});
